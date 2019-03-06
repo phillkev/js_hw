@@ -8,11 +8,11 @@ var filterit = d3.select("#filter-btn");
 function newFilter (tobeFiltered, filterKey, filterID) {
     var inputElement = d3.select(filterID);
     var foundErr = false
-    // since the usage of this function allows keys that have no values a test for error is required
+    // since the usage of this function allows keys that have no values (NULL) so we test for the error 
     try {
         inputElement.property("value");
     }
-    // flag the error so the key will not be used as a filter
+    // if the error is found flag it so the key will not be used as a filter
     catch(err) {
         foundErr = true;
     };
