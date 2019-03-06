@@ -8,8 +8,7 @@ var filterit = d3.select("#filter-btn");
 function newFilter (tobeFiltered, filterKey, filterID) {
     var inputElement = d3.select(filterID);
     var foundErr = false
-    // since the usage of this function allows keys that have no values 
-    // a test for error is required
+    // since the usage of this function allows keys that have no values a test for error is required
     try {
         inputElement.property("value");
     }
@@ -24,9 +23,7 @@ function newFilter (tobeFiltered, filterKey, filterID) {
         if (filterValue === '') {
             filterValue = 'all';
         }
-        // this allow the user to type all or use the default of '' to skip 
-        // filtering on the specific element.
-        // Apply the filter
+        // this allow the user to type all or use the default of '' to skip filtering on the specific element.  Apply the filter
         if (filterValue !== 'all') {
             tobeFiltered = tobeFiltered.filter(sighting => sighting[filterKey] === filterValue);
         };
@@ -42,10 +39,8 @@ filterit.on("click", function() {
     // build the object to be filtered
     var filteredData = data;
 
-    // build a list of the data keys within the filtered data
-    // this does assume all objects have the same core keys
-    // this also introduced the issue of keys being passed to the 
-    // newfilter function that are not valid for filters based on the index.html
+    // build a list of the data keys within the filtered data this does assume all objects have the same core keys this also
+    // introduced the issue of keys being passed to the newfilter function that are not valid for filters based on the index.html
     // which forced an err check. 
     var dataKeys = Object.keys(filteredData[0]);
     var keyList = []
@@ -60,8 +55,7 @@ filterit.on("click", function() {
     // grab the tbody as a d3 object
     var tbody = d3.select("tbody");
 
-    // clear any previous td, tr elements from the table
-    // this allows the user to submit there filters multiple times without the 
+    // clear any previous td, tr elements from the table this allows the user to submit there filters multiple times without the 
     // data appending to the bottom of a previous search
     tbody.selectAll("td").remove();
     tbody.selectAll("tr").remove();
