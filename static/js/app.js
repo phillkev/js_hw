@@ -60,13 +60,31 @@ filterit.on("click", function() {
     tbody.selectAll("td").remove();
     tbody.selectAll("tr").remove();
 
+
     // this section adds the rows and columns to the tbody
+    // the code generated from the examples provided in class did not allow the data elements to inherit the alternating colors defined by the 
+    // .table-striped>tbody>tr:nth-of-type(odd) css style
+    // the code inserted into the DOM is <tr></tr><td>value</td>
+
+//     filteredData.forEach(sighting => {
+//     tbody.append("tr")
+//         Object.entries(sighting).forEach(([key, value]) => {
+//             var cell = tbody.append("td");
+//             cell.text(value);
+//         });
+//     });
+// });
+
+
+// this solution uses jscripting instead of d3.  It works as desired but it does require more knowledge of jscripting that was not explained in class
+
     filteredData.forEach(sighting => {
-        var row = tbody.append("tr");
+        var newRow = document.createElement('tr');
         Object.entries(sighting).forEach(([key, value]) => {
-            // Append a cell to the row for each value
-            var cell = tbody.append("td");
-            cell.text(value);
+            var td = document.createElement('td');
+            td.innerHTML = value;
+            newRow.appendChild(td);
         });
+        tbody.node().appendChild(newRow)
     });
 });
